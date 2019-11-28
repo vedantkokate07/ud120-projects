@@ -18,7 +18,17 @@ from email_preprocess import preprocess
 ### and testing datasets, respectively
 ### labels_train and labels_test are the corresponding item labels
 features_train, features_test, labels_train, labels_test = preprocess()
+from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import accuracy_score
 
+classifier = GaussianNB()
+t0 = time()
+classifier.fit(features_train, labels_train)
+print(time() - t0)
+t0=time()
+predictedLabels = classifier.predict(features_test)
+print(time() - t0)
+print(accuracy_score(predictedLabels, labels_test))
 
 
 
